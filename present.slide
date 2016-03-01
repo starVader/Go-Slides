@@ -1,0 +1,150 @@
+Trees and Graphs
+
+* What is Tree ?
+
+- Tree is a data structure composed of _nodes_.
+- The *root* node has zero or more _childs_.
+- Each child hs zero or more nodes and so on.
+
+.image tr.png 300 400
+
+* Trees vs Binary Trees
+
+- Tree which has upto *2* children are _binary_ _trees_.
+- Not all trees are binary trees.
+  
+.image tr.png 200 300 
+.image btree.bmp 200 300 
+
+* Binary Tree vs Binary search Tree
+- A binary tree with specific *ordering* property.
+- _All_ _left_ descendents <= _n_ < _all_ _right_ descendents.
+.image btree.bmp 200 300
+.image tree.png 200 300
+
+* Balanced vs Unbalanced Trees. 	
+- Balancing a tree *doesn't* mean that left and right subtree are exactly same size.
+- Balanced tree really means " *not* *terribly* *imbalanced* ".
+
+* Type of Binary Trees
+- Complete Binary tree (every level is _fully_ filled except last level, from left to right).
+- Full binary trees (_either_ 0 or 2 _children_).
+- Perfect binary trees (*both* _full_ and _complete_).
+.image type.png 200 500
+
+* Binary tree Traversal
+- Inorder (*LNR*).
+- Preorder (*NLR*).
+- Postorder (*LRN*).
+
+* Pseudocode
+	void inorderTraversal (TreeNode node) {
+		if node != null {
+			inorderTraversal(node.left)
+			print node
+			inorderTraversal(node.right)
+		}
+	}
+
+	void preorderTraversal (TreeNode node) {
+		if node != null {
+			print node
+			preorderTraversal(node.left)
+			preorderTraversal(node.right)
+		}
+	}
+
+	void postorderTraversal (TreeNode node) {
+		if node != null {
+			postorderTraversal(node.left)
+			postorderTraversal(node.right)
+			print node
+		}
+	}
+
+* Binary Heaps
+- Heaps are partially sorted binary trees.
+- Type of heaps
+ 	 Min Heaps  
+	 Max Heaps
+* Min Heaps
+- A complete binary tree (totally filled other than the rightmost element in last level) where each node is smaller than its children
+- Minimum Element is at the root (_remeber_ _to_ _meanheapify_ after extraction)
+.image min-heap.png 100 150
+- Insertion
+.image heapinsert.jpg 250 500
+
+* Max Heaps
+	Max Heaps are equivalent to min heaps but elements are in descending order.
+* Tries (what??)
+- Simple words , it's a *prefix* tree.
+- A trie is a variant of an n-ary tree in which characters are stored at nodes.
+.image trie.png 
+
+* Graphs
+- A collection of nodes with edges between ( some of )  them.
+
+* Graphs vs Trees
+- A tree is a type of graph.
+- Not all graphs are trees.
+- A tree is a *connected* graph without *cycles*.
+
+* Type of Graphs
+- Directed ( _one_ way )
+- Undirected ( _two_ way )
+.image graph.jpg
+
+* Adjacency List
+- Every vertex or node stores a list of adjacent vertices
+	Node 0: 1
+	Node 1: 2,3
+	Node 2: 0,1
+* Adjacency Matrix
+	N * N boolean matrix where a true value at m[i][j] indicates an edge from node i to j.
+.image matrix.png
+
+* Graph Search
+- Depth first search (DFS).
+- Breadth First search (BFS).
+- Bidirectional search
+
+* DFS
+- We start at an arbitary node and explore each branch completely before moving on to the next branch.
+.image depthfirst.gif 150 300
+	void search (Node root) {
+		if root == null {
+		return
+		}
+		visit root
+		root.visited = true
+		for each (Node n in root.adjacent ) {
+			if n.visited == false {
+			search(n)
+			}
+		}
+	}
+
+* BFS
+- All the neighbors of the node are visited first.
+.image Animated_BFS.gif
+	void search (Node root) {
+		Queue queue = new Queue()
+		root.marked = true
+		queue.enqueue(root)
+		while(!queue.isempty() ) {
+			Node r = queue.dequeue()
+			visit r
+			for each (Node n in r.adjacent) {
+				n.marked = true
+				queue.enqueue(n)
+			}
+		} 
+	} 
+* Bidirectional search
+- Finds shortest path between source and destination.
+- We can use BFS from each node. But we can use both DFS and BFS.
+- eg: DFS from _source_ and BFS from _destination_.
+- Collision indicates , we have found a path. 
+.image BiDirection.gif
+
+
